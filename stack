@@ -1,0 +1,59 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+int main() {
+ typedef int Element;
+ class Stack{
+   private:
+    Element* stack;
+    int top;
+    int max_size;
+
+  public:
+    Stack(int size){
+      stack=(Element*)malloc(sizeof(Element)*size);
+      top=-1;
+      max_size=size;
+    }
+    void AddS(int item){
+      if(IsFullS()) cout<<"Full"<<endl;
+      else {
+        stack[++top]=item;
+      }
+    }
+
+    Element DeleteS(){
+      if(IsEmptyS()) return (Element)0;
+      else return stack[top--];
+    }
+
+    bool IsEmptyS()const{
+      if(top==-1) return true;
+      else return false;
+    }
+  
+    bool IsFullS()const{
+      if(top==max_size) return true;
+      else return false;
+    }
+
+    void print(){
+      for(int i=0; i<=top; i++){
+        cout<<stack[i]<<endl;
+      }
+    }
+ }; 
+   Stack *pointer;
+   pointer=new Stack(7);
+   pointer->AddS(1);
+   pointer->AddS(3);
+   pointer->AddS(5);
+  pointer->AddS(7);
+  pointer->AddS(9);
+  pointer->print();
+
+  pointer->DeleteS();
+  pointer->DeleteS();
+  pointer->print();
+  
+}
