@@ -1,0 +1,70 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+typedef int Element;
+
+int main(){
+  class Queue{
+    private:
+      int rare,front;
+      int max_size;
+      Element *queue;
+
+    public:
+      Queue(int size){
+        rare=front=0;
+        max_size=size;
+        queue=(Element*)malloc(sizeof(Element)*size);
+      }
+      void AddQ(Element item){
+        if(IsFullQ()) cout<<"FUuullll"<<endl;
+        else{
+        rare=(rare+1)%max_size;
+        queue[rare]=item;
+        }
+      }
+      Element DeleteQ(){
+        if(IsEmptyQ()) {cout<<"NO MEMEBER"<<endl; return (Element)0;}
+        else{
+          front=(front+1)%max_size;
+          return queue[front];
+        }
+      }
+      void printrare(){
+        cout<<rare<<endl;
+      }
+      void printfront(){
+        cout<<front<<endl;
+      }
+      bool IsFullQ()const {
+        if((rare+1)%max_size==front) return true;
+        else return false;
+      }
+      bool IsEmptyQ()const{
+        if(front==rare) return true;
+        else return false;
+      }
+      void Print(){
+        for(int i=front+ 1; i<=rare; i++){
+          cout<<queue[i]<<endl;
+        }
+      }
+ };
+  Queue *queue = new Queue(7);
+  queue->printrare();
+  queue->AddQ(1);
+  queue->printrare();
+  queue->AddQ(3);
+  queue->printrare();
+  queue->Print();
+  queue->printfront();
+
+  cout<<"delete"<<queue->DeleteQ()<<endl;
+ 
+ 
+  queue->printrare();
+  queue->printfront();
+  queue->Print();
+  
+}
