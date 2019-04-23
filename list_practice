@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string.h>
+#include <stdlib.h>
+#include<stdio.h>
+using namespace std;
+
+typedef struct t_list_node{
+  string data;
+  struct t_list_node *link;
+}list_node;
+
+class DList{
+  private:
+    list_node *head;
+  public:
+    DList();
+    ~DList();
+    void Insert(string data);
+};
+
+void DList::Insert(string data){
+  list_node *new_node;
+  new_node = new list_node;
+  new_node->data=data;
+  new_node->link=head;
+  head=new_node;
+}
+
+
+
+int main(){
+  DList *l1;
+  l1=new DList;
+  l1->Insert("very");
+}
