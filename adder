@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main(void) {
+  float x, y, z;
+  char op;
+  printf("Enter the two numbers:\n");
+  scanf("%f %f",&x,&y);
+  printf("Enter the desired operator(add: a, subtract: s, divide: d, multiply: m):\n");
+  while(getchar()!='\n');
+  scanf("%c",&op);
+  switch(op){
+    case 'a': z=x+y; break;
+    case 's': z=x-y; break;
+    case 'd': z=x/y; break;
+    case 'm': z=x*y; break;
+  }
+  printf("answer: %0.2f", z);
+  
+  return 0;
+}
