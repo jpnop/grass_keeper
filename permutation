@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+void perm(char *list, int i, int n);
+void swap(char*x,char*y);
+
+int main(void) {
+  char array[1024];
+  printf("input the word:");
+  scanf("%s",array);
+  int z=strlen(array);
+  perm(array,0,z-1);
+
+}
+
+void perm(char *list, int i, int n){
+  int j, temp;
+
+  if(i==n){
+    for(j=0; j<=n; j++){
+      printf("%c",list[j]);
+    }
+    printf("\n");
+    
+  }
+  else{
+    for(j=i; j<=n; j++){
+    swap(&list[i], &list[j]);
+    perm(list, i+1, n);
+    swap(&list[j],&list[i]);
+  }
+  } 
+}
+
+void swap(char* x,char*y){
+  char temp;
+  temp=*y;
+  *y=*x;
+  *x=temp;
+}
