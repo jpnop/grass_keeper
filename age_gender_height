@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main(void) {
+  int ag, he, we; char se; float bm;
+  printf("Enter the age : ");
+  scanf("%d",&ag);
+  printf("Enter the height : ");
+  scanf("%d",&he);
+  printf("Enter the weight : ");
+  scanf("%d",&we);
+  printf("Enter the sex(male: m, female: f) : ");
+  while(getchar()!='\n');
+  scanf("%c",&se);
+  
+  if(se=='m'){
+    bm=66.47+(13.75*we)+(5*he)-(6.76*ag);
+    
+    if (20<=ag && ag<=29){
+      if (1359.8<=bm && bm<=2096.2) printf("basal metabolism is %.3f", bm);
+      else {printf("basal metabolism is %.3f", bm); printf("below average"); }
+    }
+    else if(30<=ag && ag<=49){
+      if (1397.4<=bm && bm<=2001.6) printf("basal metabolism is %.3f", bm);
+      else {printf("basal metabolism is %.3f", bm); printf("below average"); }
+    }
+    else {
+      if (1184.5<=bm && bm<=1815.1) printf("basal metabolism is %.3f", bm);
+      else {printf("basal metabolism is %.3f", bm); printf("below average"); }
+    } 
+    
+    }
+    
+    else if(se=='f'){
+      bm=655.1+(9.56*we)+(1.85*he)-(4.68*ag);
+      
+      if (20<=ag && ag<=29){
+      if (1078.5<=bm && bm<=1544.5) printf("basal metabolism is %.3f", bm);
+      else {printf("basal metabolism is %.3f", bm); printf("below average");} 
+    }
+    else if(30<=ag && ag<=49){
+      if (1090.9<=bm && bm<=1542.7) printf("basal metabolism is %.3f", bm);
+      else {printf("basal metabolism is %.3f", bm); printf("below average");} 
+    }
+    else {
+      if (1023.9<=bm && bm<=1481.1) printf("basal metabolism is %.3f", bm);
+      else{ printf("basal metabolism is %.3f", bm); printf("below average"); }
+    } 
+    
+      
+    }
+  }
+
