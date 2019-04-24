@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main(void) {
+  int x;
+  printf("Enter the classroom time");
+  scanf("%d",&x);
+  
+  switch(x){
+    case 1: printf("class 1 : 8:30 ~ 9:45"); break;
+    case 2: printf("class 2 : 10:00 ~ 11:15"); break;
+    case 3: printf("class 3 : 11:30 ~ 12:45"); break;
+    case 4: printf("class 4 : 13:00 ~ 14:15"); break;
+    case 5: printf("class 5 : 14:30 ~ 15:45"); break;
+    case 6: printf("class 6 : 16:00 ~ 17:15"); break;
+    case 7: printf("class 7 : 17:30 ~ 18:45");
+  }
+  
+  return 0;
+}
