@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void) {
+  int x, i, j;
+  printf("enter the size of matrix : ");
+  scanf("%d",&x);
+  for(i=1; i<=x; i++){
+    printf("\n");
+    for(j=1; j<=x; j++){
+      if(j==i) printf("1  ");
+      else printf("0  ");
+    }  
+  }
+
+  return 0;
+}
