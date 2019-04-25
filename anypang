@@ -1,0 +1,124 @@
+#include <Windows.h>
+
+#include "GameManager.h"
+
+#include "ResourceManager.h"
+
+ 
+
+GameManager* gameManager = nullptr;
+
+ResourceManager* resourceManager = nullptr;
+
+ 
+
+LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+
+ 
+
+        switch (uMsg) {
+
+        case WM_CREATE:
+
+                break;
+
+        case WM_PAINT:
+
+                PAINTSTRUCT ps;
+
+                HDC hdc;
+
+                hdc = BeginPaint(hWnd, &ps);
+
+                gameManager->update();
+
+                resourceManager->draw(hdc);
+
+                EndPaint(hWnd, &ps);
+
+                break;
+
+ 
+
+        case WM_DESTROY:
+
+                PostQuitMessage(0); break;
+
+        }
+
+ 
+
+        return DefWindowProc(hWnd, uMsg, wParam, lParam);
+
+}
+
+ 
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+
+        WNDCLASS wc;
+
+ 
+
+        gameManager = new GameManager();
+
+        resourceManager = new ResourceManager(hInstance);
+
+ 
+
+        wc.cbClsExtra = NULL;
+
+        wc.cbWndExtra = NULL;
+
+        wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
+
+        wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+
+        wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+
+        wc.hInstance = hInstance;
+
+        wc.lpfnWndProc = WndProc;
+
+        wc.lpszClassName = L"Anipang";
+
+        wc.lpszMenuName = NULL;
+
+        wc.style = NULL;
+
+ 
+
+        RegisterClass(&wc);
+
+ 
+
+        HWND hWnd = CreateWindow(wc.lpszClassName, L"Anipang", WS_OVERLAPPEDWINDOW, 100, 90, 380, 650, NULL, NULL, hInstance, NULL);
+
+ 
+
+        ShowWindow(hWnd, nCmdShow);
+
+        UpdateWindow(hWnd);
+
+ 
+
+        MSG msg;
+
+ 
+
+        while (GetMessage(&msg, NULL, 0, 0)) {
+
+                TranslateMessage(&msg);
+
+                DispatchMessage(&msg);
+
+        }
+
+ 
+
+        return msg.wParam;
+
+}
+
+
+출처: https://kyungthe.tistory.com/38 [쿠재아이의 블로그]
