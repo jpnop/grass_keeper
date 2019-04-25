@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main(void) {
+  float x; float y; char o;
+  printf("Enter the Megabyte : ");
+  scanf("%f",&x);
+  printf(" What units do you want to output? (B, KB, MB, GB) : ");
+  while(getchar()!='\n');
+  scanf("%c",&o);
+  
+  switch(o){
+    case 'B': y=x*1048576; printf("%.1f B", y); break;
+    case 'K': y=x*1024; printf("%.1f KB",y); break;
+    case 'M': y=x; printf("%.1f MB", y); break;
+    case 'G': y=x/1024; printf("%.6f GB",y);
+  }
+  
+  return 0;
+}
