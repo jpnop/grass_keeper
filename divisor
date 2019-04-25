@@ -1,0 +1,29 @@
+#include <stdio.h>
+int max(int x, int y);
+int min(int x, int y);
+int main(void) {
+  int a,b,c,d, gcd, lcm, i ,j;
+  do{
+    printf("enter two number :");
+    scanf("%d %d", &a, &b);
+    if (a==0 || b==0 || a<0 || b<0) break;
+    c= min(a,b);
+    d= max(a,b);
+    for(i=1; i<=c; i++){
+     if( a%i==0 && b%i==0)
+      gcd=i;
+    }
+    
+    lcm= gcd*(c/gcd)*(d/gcd);
+    printf(" gcd : %d, lcm : %d\n", gcd, lcm);
+    
+  } while(a!=0 || b!=0|| a>0 || b>0);
+}
+int max(int x, int y)
+{
+  return(x>y?x:y);
+}
+int min(int x, int y)
+{
+  return(x>y?y:x);
+}
