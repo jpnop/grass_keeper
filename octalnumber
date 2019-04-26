@@ -1,0 +1,23 @@
+# include<stdio.h>
+
+  int main(){
+  int oct, a,b,sum, de,num,c,j=1;
+  
+  do{
+  printf("enter the octal number : ");
+  scanf("%d", &oct);
+  if(oct>=80) break;
+  a= oct/10;
+  b= oct%10;
+  de=a*8+b;
+  sum=0;j=1;
+  num=de;
+   while (0<num){
+    c=num%2;
+    sum+=c*j;
+    j=j*10;
+    num=num/2;  
+    }
+  printf("binary number : %d, dceimal number : %d\n", sum, de);
+}while (oct<80);
+}
