@@ -1,0 +1,51 @@
+#include <stdio.h>
+float add();
+float subtract();
+float divide();
+float multiply();
+
+int main(){
+  char op; float a;
+  do{
+    printf("Enter the desired operator\n (add: a, subtract: s, divide: d, multiply: m, finish: f)\n");
+    scanf(" %c", &op);
+      if(op=='f') break;
+      switch(op){
+        case 'a': a=add(); break;
+        case 's': a=subtract(); break;
+        case 'd': a=divide(); break;
+        case 'm': a=multiply(); break;
+      }
+    printf("answer: %.2f\n", a);
+  }while (op!='f') ;
+  return 0;
+}
+
+float add(){
+  float x,y, z;
+  printf("Enter the two number :");
+  scanf("%f%f", &x,&y);
+  z= x+y;
+  return z;
+}
+float subtract(){
+  float x,y, z;
+  printf("Enter the two number :");
+  scanf("%f%f", &x,&y);
+  z= x-y;
+  return z;
+}
+float divide(){
+  float x,y, z;
+  printf("Enter the two number :");
+  scanf("%f%f", &x,&y);
+  z= x/y;
+  return z;
+}
+float multiply(){
+  float x,y, z;
+  printf("Enter the two number :");
+  scanf("%f%f", &x,&y);
+  z= x*y;
+  return z;
+}
