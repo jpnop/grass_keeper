@@ -1,0 +1,7 @@
+struct node
+    {
+        string key;
+        string value;
+        node* left;
+        node* right;
+    };
