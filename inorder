@@ -1,0 +1,8 @@
+void inorder(node* t)
+    {
+        if(t == NULL)
+            return;
+        inorder(t->left);
+        cout << t->key << " ";
+        inorder(t->right);
+    }
