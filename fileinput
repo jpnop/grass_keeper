@@ -1,0 +1,5 @@
+ ifstream fp1;
+  char textfile[30];
+  scanf("%s",textfile);
+  fp1.open(textfile);
+  char Line[500];
