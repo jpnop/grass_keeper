@@ -1,0 +1,34 @@
+public:
+    BST()
+    {
+        root = NULL;
+    }
+
+  /*  ~BST()
+    {
+        root = makeEmpty(root);
+    }
+*/
+    void insert(string source, string target)
+    {
+        root = insert(source, target, root);
+    }
+/*
+    void remove(int x)
+    {
+        root = remove(x, root);
+    }
+*/
+    void display()
+    {
+        inorder(root);
+        cout << endl;
+    }
+
+    node* search(string source)
+    {
+      
+        return find(root, source);
+        
+    }
+};
