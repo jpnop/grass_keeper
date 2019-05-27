@@ -1,0 +1,65 @@
+{
+  ifstream fp;
+  char filename[30];
+  
+  scanf("%s", filename);
+  fp.open(filename);
+  
+  char line[100];
+  
+  BST *b = new BST();
+  node *t = new node;
+  
+  int count = 0;
+  int menu;
+  int change;
+
+  while(fp.getline(line, 100)){
+    count=0;
+    t = new node;
+    
+    char *token;
+    token = strtok(line, " ");
+    while(token!=NULL){
+      if(count==0){
+        switch(*token){
+          case 'a' : menu=0; break;
+          case 'd' : menu=1; break;
+          case 'p' : menu=2; break;
+          case 'q' : menu=3; break;
+        }
+        count++;
+      }
+      else if(count==1){
+        change=atoi(token);
+        t->data = change;
+        count++;
+      }
+      else{
+        t->value = token;
+        count = 0;
+      }
+      
+     token=strtok(NULL,", ");
+    }
+    
+    switch(menu){
+      case 0 : {
+        b-> insert(t->data,t->value);
+      }; break;
+      
+      case 1 : {
+        b->remove(t->data);
+      }; break;
+      
+      case 2 :b->display(); break;
+      
+      case 3 : exit(0);
+    }
+      
+      
+    }
+    
+ fp.close();
+
+}
