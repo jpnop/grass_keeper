@@ -1,0 +1,38 @@
+#include <iostream>
+#include "stack.h"
+
+using namespace std;
+
+int main()
+{
+    Stack* stack = new Stack();
+
+    cout << "111" << endl;
+    stack->Print();
+    stack->Push(1);
+    stack->Print();
+    cout << "222" << endl;
+    stack->Push(3);
+    stack->Print();
+    cout << "333" << endl;
+    stack->Push(5);
+    stack->Print();
+    cout << "444" << endl;
+    stack->Push(7);
+    stack->Print();
+    cout << "555" << endl;
+    stack->Push(8);
+    stack->Print();
+    cout << "666" << endl;
+    stack->Push(9);
+    stack->Print();
+    cout << "777" << endl;
+    cout << "Push is done, now Pop" << endl;
+
+    cout << "Pop: " << stack->Pop() << endl;
+    stack->Print();
+    cout << "Pop: " << stack->Pop() << endl;
+    stack->Print();
+    cout << "Pop: " << stack->Pop() << endl;
+    stack->Print();
+}
