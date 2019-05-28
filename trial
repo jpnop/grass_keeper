@@ -1,0 +1,8 @@
+using namespace std;
+int main() {
+  string name;
+  char ame[100]="hello";
+  char *p=ame;
+  name=p;
+  cout<<name;
+}
