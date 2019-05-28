@@ -1,0 +1,12 @@
+ public void broadcast(String msg){
+                synchronized(hm){
+                        Collection collection = hm.values();
+                        Iterator iter = collection.iterator();
+                        while(iter.hasNext()){
+                                PrintWriter pw = (PrintWriter)iter.next();
+                                if(pw==hm.get(id)) continue; //if pw of user id is same with pw, skip and continue.
+                                pw.println(msg);
+                                pw.flush();
+                        }
+                }
+        } // broadcast
