@@ -1,0 +1,14 @@
+public void sendmsg(String msg){
+                int start = msg.indexOf(" ") +1;
+                int end = msg.indexOf(" ", start);
+                if(end != -1){
+                        String to = msg.substring(start, end);
+                        String msg2 = msg.substring(end+1);
+                        Object obj = hm.get(to);
+                        if(obj != null){
+                                PrintWriter pw = (PrintWriter)obj;
+                                pw.println(id + " whisphered. : " + msg2);
+                                pw.flush();
+                        } // if
+                }
+        } // sendmsg
