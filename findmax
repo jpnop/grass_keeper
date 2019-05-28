@@ -1,0 +1,9 @@
+node* findMax(node* t)
+    {
+        if(t == NULL)
+            return NULL;
+        else if(t->right == NULL)
+            return t;
+        else
+            return findMax(t->right);
+    }
