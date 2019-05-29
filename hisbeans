@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main(void) {
+  int a[3][3];
+  printf("Enter the 9 numbers: \n");
+  for(int i=0; i<3; i++){
+    for(int j=0; j<3; j++){
+     scanf("%d", &a[i][j]);
+    }
+  }
+  
+  for(int i=0; i<3; i++){
+    printf("%d %d %d\n", a[i][0], a[i][1], a[i][2]);
+  }
+  int m1, m2, m3;
+  m1=(a[0][0]+a[1][0]+a[2][0])/3;
+  m2=(a[0][1]+a[1][1]+a[2][1])/3;
+  m3= (a[0][2]+a[1][2]+a[2][2])/3;
+  
+  printf("Mean of each column :%d %d %d", m1,m2,m3);
+}
