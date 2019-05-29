@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+  FILE *sp=NULL;
+  char a[500];
+  sp=fopen("test.txt", "r");
+  if (sp==NULL){
+    exit(-1);
+  }
+  
+  while(!feof(sp)){
+    fgets(a,500, sp);
+    printf("%s", a);
+    for(int i=0; i<500; i++){
+      a[i]=0;
+    }
+  }
+  fclose(sp);
+  return 0;
+}
