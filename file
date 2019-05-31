@@ -1,0 +1,292 @@
+
+#include<iostream>
+#include<stdlib.h>
+#include<string.h>
+#include <fstream>
+
+using namespace std;
+ struct node
+    {
+        string key;
+        string value;
+        node* left;
+        node* right;
+    };
+
+class BST
+{
+   
+    node* root;
+
+    node* makeEmpty(node* t)
+    {
+        if(t == NULL)
+            return NULL;
+        {
+            makeEmpty(t->left);
+            makeEmpty(t->right);
+            delete t;
+        }
+        return NULL;
+    }
+
+    node* insert(string source, string target, node* t)
+    {   
+        
+        
+        if(t == NULL)
+        {
+            t = new node;
+            t->key =source;
+            t->value=target;
+            t->left = t->right = NULL;
+        }
+        
+        else{
+          int x; //string priority
+          x=source.compare(t->key);
+        
+        if(x < 0)
+            t->left = insert(source,target, t->left);
+        else if(x > 0)
+            t->right = insert(source,target, t->right);
+            
+        }
+        return t;
+    }
+
+    node* findMin(node* t)
+    {
+        if(t == NULL)
+            return NULL;
+        else if(t->left == NULL)
+            return t;
+        else
+            return findMin(t->left);
+    }
+
+    node* findMax(node* t)
+    {
+        if(t == NULL)
+            return NULL;
+        else if(t->right == NULL)
+            return t;
+        else
+            return findMax(t->right);
+    }
+/*
+    node* remove(int x, node* t)
+    {
+        node* temp;
+        if(t == NULL)
+            return NULL;
+        else if(x < t->key)
+            t->left = remove(x, t->left);
+        else if(x > t->key)
+            t->right = remove(x, t->right);
+        else if(t->left && t->right)
+        {
+            temp = findMin(t->right);
+            t->key = temp->key;
+            t->right = remove(t->key, t->right);
+        }
+        else
+        {
+            temp = t;
+            if(t->left == NULL)
+                t = t->right;
+            else if(t->right == NULL)
+                t = t->left;
+            delete temp;
+        }
+
+        return t;
+    } */
+
+    void inorder(node* t)
+    {
+        if(t == NULL)
+            return;
+        inorder(t->left);
+        cout << t->key << " ";
+        inorder(t->right);
+    }
+
+    node* find(node* t, string source)
+    {   
+        
+        
+        if(t == NULL)
+            return NULL;
+        else{
+        int x; //string priority
+        x= source.compare(t->key);
+         if(x < 0)
+            return find(t->left, source);
+        else if(x > 0)
+            return find(t->right, source);
+        else
+            return t;
+        }
+    }
+
+public:
+    BST()
+    {
+        root = NULL;
+    }
+
+  /*  ~BST()
+    {
+        root = makeEmpty(root);
+    }
+*/
+    void insert(string source, string target)
+    {
+        root = insert(source, target, root);
+    }
+/*
+    void remove(int x)
+    {
+        root = remove(x, root);
+    }
+*/
+    void display()
+    {
+        inorder(root);
+        cout << endl;
+    }
+
+    node* search(string source)
+    {
+      
+        return find(root, source);
+        
+    }
+};
+
+int main(){
+   ifstream fp1;
+  char textfile[30];
+  scanf("%s",textfile);
+  fp1.open(textfile);
+  char Line[500];
+  ifstream fp2;
+  char mapfile[30];
+  scanf("%s",mapfile);
+  fp2.open(mapfile);
+  char line[1000];
+  
+  BST *b = new BST();
+  node *t = new node;
+
+  
+  int count=0;
+  
+  while(fp2.getline(line,1000)){
+    
+    t=new node;
+    
+    char *token;
+    token=strtok(line, ": ");
+    while(token!=NULL){
+    
+      switch(count){
+        case 0 : {t->key=token; count ++;} break;
+        case 1 : {t->value=token;
+        count=0;}break;
+      }
+      
+        token=strtok(NULL," ");
+      
+    }  
+      //cout<<t->key<<" "<<t->value<<endl;
+      b->insert(t->key,t->value);
+      
+  }
+ 
+  // mapfile binary search tree formation
+  
+  while(fp1.getline(Line,500)){
+    
+    char *tokenized;
+    tokenized=strtok(Line , " ");
+    
+    while(tokenized!=NULL){
+      int l=0; 
+      for(l=0;*(tokenized+l)!='\0';l++);
+            
+      if(tokenized[l-1]=='.'){
+        string change;
+        for(int i=0; i<l-1; i++){
+          change+=tokenized[i];
+        }
+        if(b->search(change)!=NULL){
+        node* temp= new node;
+        temp=b->search(change);
+        cout<<temp->value<<".";
+        }
+        
+        else {
+          if(change=="U.S") cout<<change<<". ";
+          else if(change=="H") cout<<change<<"ussein ";
+          else cout<<change<<".";
+        }
+      }
+      
+      else if(tokenized[l-1]==','){
+        string change;
+        for(int i=0; i<l-1; i++){
+          change+=tokenized[i];
+        }
+        if(b->search(change)!=NULL){
+        node* temp= new node;
+        temp=b->search(change);
+        cout<<temp->value<<", ";
+        }
+        
+        else {
+          cout<<change<<", ";
+        }
+      }
+      else if(tokenized[l-1]==';'){
+        string change;
+        for(int i=0; i<l-1; i++){
+          change+=tokenized[i];
+        }
+        if(b->search(change)!=NULL){
+        node* temp= new node;
+        temp=b->search(change);
+        cout<<temp->value<<"; ";
+        }
+        
+        else {
+          cout<<change<<"; ";
+        }
+      }
+      
+      else{
+        if(b->search(tokenized)!=NULL){
+        node* temp= new node;
+        temp=b->search(tokenized);
+        cout<<temp->value<<" ";
+        }
+        
+        else {
+          cout<<tokenized<<" ";
+        }
+      }
+      
+        
+         
+         tokenized=strtok(NULL," ");
+        
+      }
+      
+      cout<<endl;
+  }
+  
+  
+ 
+  fp2.close();
+  fp1.close();
