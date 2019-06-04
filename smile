@@ -1,0 +1,45 @@
+#include <iostream>
+#include <list>
+using namespace std;
+
+int main() {
+  list<string>demo;
+  string word;
+  cout<<"Enter a line with six words:"<<endl;
+  for(int i=1; i<=6; i++){
+    cin>>word;
+    demo.push_back(word);
+  }
+  cout<<"Front element:"<<demo.front()<<endl<<"Back element: "<<demo.back()<<endl<<"Size of lsit: "<<demo.size()<<endl;
+
+  list<string>::iterator place;
+  cout<<"List contents from beginning to end: "<<endl;
+
+  for(place=demo.begin(); place!=demo.end(); place++){
+    cout<<*place<<" ";
+  }
+  cout<<endl;
+  cout<<"Enter a word to insert after the first: ";
+  cin >> word;
+  place =demo.begin();
+  ++place;
+  demo.insert(place,word);
+
+  place=demo.end();
+  --place;
+  --place;
+  demo.erase(place);
+  cout<<"Next to last word has been erased."<<endl;
+  cout<<"Enter a word to add at the fron: ";
+  cin>>word;
+  demo.push_front(word);
+  cout<<"List contetns from beginning to end: "<<endl;
+
+  string init[]={"AA","BB","CC"};
+  list <string>demo2(init, init+sizeof(init)/sizeof(string));
+  demo.merge(demo2);
+
+  for(place=demo.begin(); place!=demo.end(); place++){
+    cout<<*place<<" ";
+  }
+}
