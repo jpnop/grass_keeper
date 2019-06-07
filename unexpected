@@ -1,0 +1,45 @@
+int main() {
+  list<Member> init;
+  
+  ifstream fp;
+  char filename[50];
+  
+  scanf("%s",filename);
+  fp.open(filename);
+  
+  char line[100];
+  int line_number=1;
+
+  Member *m= new Member;
+  
+  int count=0;
+
+  while(fp.getline(line,100)){
+      m = new Member;
+    
+      char *token;
+      token=strtok(line,", ");
+      while(token!=NULL){
+        switch(count){
+          case 0 :{ m->name=token;count++;}; break;
+          case 1 :{ m->id=token; count ++;}; break;
+          case 2 :{ m-> email=token; count=0;};
+        }
+        
+        token=strtok(NULL,", ");
+      }
+      // cout<<m->id<<m->name<<m->email;
+       
+     init.insert(m); 
+     line_number++;
+    }
+  // cout << endl;
+  list<Member>::iterator it;
+  
+  for(it=demo.rbegin(); it!=demo.rend(); it--){
+    cout<<*(it->id)<<", "<<*(it->name)<<", "<<*(it->email)<<endl;
+  }
+  fp.close();
+
+ 
+}
