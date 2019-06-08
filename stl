@@ -1,0 +1,49 @@
+
+#include <iostream>
+#include <stdlib.h>
+#include <string.h>
+
+using namespace std;
+
+typedef struct{
+  int key;
+  string data;
+}Element;
+void BubbleSort(Element list[],int n){
+  int i,j;
+  for(i=0; i< n-1; i++){
+    for(j=0; j<n-i-1; j++){
+      if (list[j].key>list[j+1].key) swap(list[j].key, list[j+1].key);
+    }
+  }  
+}
+
+void swap(int *a, int *b){
+  int temp;
+  temp=*a;
+  *a=*b;
+  *b=temp;
+}
+
+int main() {
+  Element *list;
+  int i, count;
+  clock_t begin, end;
+  char method;
+
+  cout << "Number of element and method" << endl;
+  cin >> count >> method;
+  list = new Element[count];
+  
+  srand(time(0));
+  for(i=0;i<count; i++){
+    list[i].key=rand()%count;
+    list[i].data="i am " + to_string(list[i].key);
+  }
+  begin=clock();
+  BubbleSort(list, count);//call a sort function depending on 'method'
+  end=clock();
+  cout << "Elapsed clocks:"<<(end-begin)<<endl;
+
+}
+

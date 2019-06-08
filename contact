@@ -1,0 +1,26 @@
+class WinInputThread extends Thread{
+		private Socket sock = null;
+		private BufferedReader br = null;
+		public WinInputThread(Socket sock, BufferedReader br){
+			this.sock = sock;
+			this.br = br;
+		}
+		public void run(){
+			try{
+				String line = null;
+				while((line = br.readLine()) != null){
+					display.append(line + "\n");
+				}
+			}catch(Exception ex){
+			}finally{
+				try{
+					if(br != null)
+						br.close();
+				}catch(Exception ex){}
+				try{
+					if(sock != null)
+						sock.close();
+				}catch(Exception ex){}
+			}
+		} // InputThread
+
